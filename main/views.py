@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.models import User
 from django.http import HttpResponseBadRequest
 from django.shortcuts import render, redirect
@@ -17,9 +18,12 @@ def signup_page_view(request):
         username = request.POST.get('username')
         password1 = request.POST.get('password1')
         password2 = request.POST.get('password2')
-
+        if len(User.objects.filter(username=username)) > 0:
+            messages.error(request, 'نام کاربری شما در سیستم موجود است')
+            return redirect('signup-page')
         if password1 != password2:
-            return HttpResponseBadRequest("Not same passwords!")
+            messages.error(request, 'گذرواژه و تکرار گذرواژه یکسان نیستند')
+            return redirect('signup-page')
 
         user = User(username=username, email=email, first_name=firstname, last_name=lastname, is_active=True)
         user.set_password(password1)

@@ -12,36 +12,47 @@
     {% include 'main/navbar.html' %}
 
     <div class="ui form">
-  <form  action = "{% url "signup-page" %}" method="post" id="register_form" class="three fields">
-      {% csrf_token %}
-    <div class="field">
-      <label>First name</label>
-      <input name="first_name" type="text" id="" placeholder="First Name">
+        <form action="{% url 'signup-page' %}" method="post" id="register_form" class="three fields">
+            {% csrf_token %}
+            <div class="field">
+                <label>First name</label>
+                <input name="first_name" type="text" id="" placeholder="First Name">
+            </div>
+            <div class="field">
+                <label>Last name</label>
+                <input name="last_name" type="text" placeholder="Last Name">
+            </div>
+            <div class="three fields">
+                <div class="field">
+                    <label>username</label>
+                    <input name="username" type="text" placeholder="username">
+                </div>
+                <div class="field">
+                    <label>email</label>
+                    <input name="email" type="text" placeholder="email">
+                </div>
+                <div class="field">
+                    <label>password1</label>
+                    <input name="password1" type="text" placeholder="password1">
+                </div>
+                <div class="field">
+                    <label>password2</label>
+                    <input name="password2" type="text" placeholder="password2">
+                </div>
+                <button type="submit" value="submit" name="submit"></button>
+            </div>
+        </form>
+
     </div>
-    <div class="field">
-      <label>Last name</label>
-      <input name="last_name" type="text" placeholder="Last Name">
+    {% for message in messages %}
+    <div id="errors">
+        <a class="close" href="#" data-dismiss="alert">×</a>
+
+        {{ message }}
+
     </div>
-  <div class="three fields">
-    <div class="field">
-      <label>username</label>
-      <input name="username" type="text" placeholder="username">
-    </div>
-    <div class="field">
-      <label>email</label>
-      <input name="email" type="text" placeholder="email">
-    </div>
-    <div class="field">
-      <label>password1</label>
-      <input name="password1" type="text" placeholder="password1">
-    </div>
-      <div class="field">
-      <label>password2</label>
-      <input name="password2" type="text" placeholder="password2">
-    </div>
-      <button type="submit" value="submit" name="submit" ></button>
-  </div>
-</form>
+    {% endfor %}
+
 
 </div>
 </body>
