@@ -11,23 +11,55 @@
 
     {% include 'main/navbar.html' %}
 
-    <form method="post" action="{% url 'signup-page' %}">
-        {{ form }}
+    <div class="ui form">
+  <form  action = "{% url "signup-page" %}" method="post" id="register_form" class="three fields">
+      {% csrf_token %}
+    <div class="field">
+      <label>First name</label>
+      <input name="first_name" type="text" id="" placeholder="First Name">
+    </div>
+    <div class="field">
+      <label>Last name</label>
+      <input name="last_name" type="text" placeholder="Last Name">
+    </div>
+  <div class="three fields">
+    <div class="field">
+      <label>username</label>
+      <input name="username" type="text" placeholder="username">
+    </div>
+    <div class="field">
+      <label>email</label>
+      <input name="email" type="text" placeholder="email">
+    </div>
+    <div class="field">
+      <label>password1</label>
+      <input name="password1" type="text" placeholder="password1">
+    </div>
+      <div class="field">
+      <label>password2</label>
+      <input name="password2" type="text" placeholder="password2">
+    </div>
+      <input type="submit" value="submit" name="submit" ></input>
+  </div>
+</form>
 
-        <div class="field">
-            <label>Password</label>
-            <input type="password" name="password1">
-        </div>
-        <div class="field">
-            <label>Confirm</label>
-            <input type="password" name="password2">
-        </div>
-
-        {% csrf_token %}
-
-        <button class="ui button" type="submit">Submit</button>
-
-    </form>
+{#    <form method="post" action="{% url 'signup-page' %}">#}
+{#        {{ form }}#}
+{##}
+{#        <div class="field">#}
+{#            <label>Password</label>#}
+{#            <input type="password" name="password1">#}
+{#        </div>#}
+{#        <div class="field">#}
+{#            <label>Confirm</label>#}
+{#            <input type="password" name="password2">#}
+{#        </div>#}
+{##}
+{#        {% csrf_token %}#}
+{##}
+{#        <button class="ui button" type="submit">Submit</button>#}
+{##}
+{#    </form>#}
 </div>
 </body>
 </html>

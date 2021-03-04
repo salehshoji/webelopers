@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.http import HttpResponseBadRequest
 from django.shortcuts import render, redirect
 
@@ -10,11 +11,20 @@ def home_page_view(request):
 
 def signup_page_view(request):
     if request.POST:
-        form = UserForm(request.POST)
-        if not form.is_valid():
-            return HttpResponseBadRequest('not valid data')
-        user = form.save()
+        firstname = request.POST.get('first_name')
+        lastname = request.POST.get('last_name')
+        email = request.POST.get('email')
+        username = request.POST.get('username')
+        password1 = request.POST.get('password1')
+        password2 = request.POST.get('password2')
 
+        if password1 != password2:
+            return HttpResponseBadRequest("Not same passwords!")
+
+        user = User(username=username, email=email, first_name=firstname, last_name=lastname, is_active=True)
+        user.set_password(password1)
+
+        user.save()
         return redirect('home')
     else:
         data = {
