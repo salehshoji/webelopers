@@ -44,13 +44,11 @@
         </form>
 
     </div>
-    {% for message in messages %}
     <div id="errors">
-        <a class="close" href="#" data-dismiss="alert">×</a>
-
+    {% for message in messages %}
         {{ message }}
-
     </div>
+
     {% endfor %}
 
 
