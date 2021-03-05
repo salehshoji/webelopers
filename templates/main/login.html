@@ -12,22 +12,24 @@
     {% include 'main/navbar.html' %}
 
     <div class="ui form">
-        <form action="{% url 'signup-page' %}" method="post" id="register_form" class="three fields">
+        <form action="{% url 'login-page' %}" method="post" id="login_form">
             {% csrf_token %}
-                <div class="field">
-                    <label>username</label>
-                    <input name="username" type="text" placeholder="username">
-                </div>
-                <div class="field">
-                    <label>password</label>
-                    <input name="password" type="text" placeholder="password">
-                </div>
-                <button type="submit" value="submit" name="submit"></button>
+            <div class="field">
+                <label>username</label>
+                <input name="username" type="text" placeholder="username">
+            </div>
+            <div class="field">
+                <label>password</label>
+                <input name="password" type="text" placeholder="password">
+            </div>
+            <div>
+                <button type="submit" value="Login" name="submit"></button>
+            </div>
         </form>
 
     </div>
     <div id="errors">
-    {% for message in messages %}
+        {% for message in messages %}
         {{ message }}
     </div>
 

@@ -47,4 +47,4 @@ def login_page_view(request):
             messages.error(request, "نام کاربری یا رمز عبور اشتباه است")
 
     else:
-        return redirect('home')
+        return redirect('main/login.html')
