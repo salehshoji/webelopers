@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Signup</title>
+    {% include 'main/head.html' %}
+</head>
+<body>
+
+<div class="ui segment" style="margin: 20px">
+
+    {% include 'main/navbar.html' %}
+
+    <div class="ui form">
+        <form action="{% url 'signup-page' %}" method="post" id="register_form" class="three fields">
+            {% csrf_token %}
+                <div class="field">
+                    <label>username</label>
+                    <input name="username" type="text" placeholder="username">
+                </div>
+                <div class="field">
+                    <label>password</label>
+                    <input name="password" type="text" placeholder="password">
+                </div>
+                <button type="submit" value="submit" name="submit"></button>
+        </form>
+
+    </div>
+    <div id="errors">
+    {% for message in messages %}
+        {{ message }}
+    </div>
+
+    {% endfor %}
+
+
+</div>
+</body>
+</html>
