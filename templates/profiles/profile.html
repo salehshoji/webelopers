@@ -5,10 +5,19 @@
     <title>Title</title>
     {% include 'main/head.html' %}
 </head>
+
+<body>
 <div class="ui segment" style="margin: 20px">
 
-    <body>
     {% include 'main/navbar.html' %}
-    </body>
+    <div class="right menu">
+        <div class="item">
+            <div class="ui transparent icon input">
+                <a id=”make_new_product” href="{% url 'new-product' %}">New Product</a>
+
+            </div>
+        </div>
+    </div>
 </div>
+</body>
 </html>
