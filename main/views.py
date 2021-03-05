@@ -55,3 +55,14 @@ def login_page_view(request):
 def logout_page_view(request):
     logout(request)
     return redirect('home')
+
+
+def contact_us_page_view(request):
+    if request.POST:
+        title = request.POST.get('title')
+        email = request.POST.get('email')
+        text = request.POST.get('text')
+        if len(text) < 10 + len(text) > 250:
+            return render(request, 'main/contactus.html')
+    else:
+        return render(request, 'main/contactus.html')

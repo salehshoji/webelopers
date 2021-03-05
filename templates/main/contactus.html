@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Signup</title>
+    {% include 'main/head.html' %}
+</head>
+<body>
+
+<div class="ui segment" style="margin: 20px">
+
+    {% include 'main/navbar.html' %}
+
+    <div class="ui form">
+        <form action="{% url 'contact-us' %}"  method="post" id=”contact_us_form” class="three fields">
+            {% csrf_token %}
+            <div class="field">
+                <label>title</label>
+                <input name=”title” type="text" placeholder="title">
+            </div>
+            <div class="field">
+                <label>email</label>
+                <input name="email" type="text" placeholder="email">
+            </div>
+            <div class="text">
+                    <label>text</label>
+                <textarea name="text" type="text" placeholder="text"></textarea>
+            </div>
+            <button type="submit" value="send" name="send">Sign up</button>
+        </form>
+
+    </div>
+    <div id="errors">
+    {% for message in messages %}
+        {{ message }}
+    {% endfor %}
+    </div>
+
+
+</div>
+</body>
+</html>
