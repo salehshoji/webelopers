@@ -42,9 +42,9 @@ def login_page_view(request):
         user = authenticate(request=request, username=username, password=password)
         if user is not None:
             login(request, user)
-            redirect('home')
+            return redirect('home')
         else:
             messages.error(request, "نام کاربری یا رمز عبور اشتباه است")
-
+            return redirect('home')
     else:
-        return redirect('main/login.html')
+        return render(request, 'main/login.html')
