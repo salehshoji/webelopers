@@ -7,7 +7,7 @@
         Login
     </a>
     {% else %}
-    <a class="item" id="logout">
+    <a class="item" id="logout" href="{% url 'logout-page' %}">
         Logout
     </a>
     {% endif %}

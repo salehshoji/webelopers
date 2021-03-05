@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.shortcuts import render
 
@@ -50,3 +50,8 @@ def login_page_view(request):
 
     else:
         return render(request, 'main/login.html')
+
+
+def logout_page_view(request):
+    logout(request)
+    return render(request, 'main/index.html')
