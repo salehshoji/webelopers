@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 
 
 def home_page_view(request):
@@ -24,13 +24,14 @@ def signup_page_view(request):
             messages.error(request, 'گذرواژه و تکرار گذرواژه یکسان نیستند')
             error = True
         if error:
-            return redirect('signup-page')
+            return render(request, 'main/signup.html')
         else:
             user = User(username=username, email=email, first_name=firstname, last_name=lastname, is_active=True)
             user.set_password(password1)
 
             user.save()
-            return redirect('home')
+            return render(request, 'main/index.html')
+
     else:
         return render(request, 'main/signup.html')
 
@@ -42,9 +43,10 @@ def login_page_view(request):
         user = authenticate(request=request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('home')
+            return render(request, 'main/index.html')
         else:
             messages.error(request, "نام کاربری یا رمز عبور اشتباه است")
-            return redirect('home')
+            return render(request, 'main/login.html')
+
     else:
         return render(request, 'main/login.html')
