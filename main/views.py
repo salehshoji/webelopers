@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 
@@ -32,3 +33,18 @@ def signup_page_view(request):
             return redirect('home')
     else:
         return render(request, 'main/signup.html')
+
+
+def login_page_view(request):
+    if request.POST:
+        username = request.POST.get('username')
+        password = request.POST.get("password")
+        user = authenticate(request=request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            redirect('home')
+        else:
+            messages.error(request, "نام کاربری یا رمز عبور اشتباه است")
+
+    else:
+        return redirect('home')
