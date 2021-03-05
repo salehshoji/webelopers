@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 
 def home_page_view(request):
@@ -54,4 +54,4 @@ def login_page_view(request):
 
 def logout_page_view(request):
     logout(request)
-    return render(request, 'main/index.html')
+    return redirect('home')
